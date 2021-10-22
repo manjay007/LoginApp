@@ -1,3 +1,4 @@
+const base64 = require("base-64");
 const express = require("express");
 const User = require("./db");
 const app = express();
@@ -19,7 +20,7 @@ app.post("/login", async (req, res) => {
     return res.status(404).json({ msg: "user not found" });
   }
 
-  if (user.password == password) {
+  if (user.password == base64.decode(password)) {
     // logged in successfully
     return res.send({ success: true, id: user.id, name: user.name });
   } else {

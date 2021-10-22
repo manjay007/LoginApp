@@ -1,6 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet } from "react-native";
 import React, { useState } from "react";
+import base64 from "react-native-base64";
 import {
   Text,
   View,
@@ -42,6 +43,8 @@ const App = () => {
           setAuth(false);
         }
       });
+    // console.log(password);
+    // console.log(base64.decode(password));
   }
   // if (!isAuth) {
   return (
@@ -63,7 +66,7 @@ const App = () => {
           placeholder="Password."
           placeholderTextColor="#003f5c"
           secureTextEntry={true}
-          onChangeText={(password) => setPassword(password)}
+          onChangeText={(password) => setPassword(base64.encode(password))}
         />
       </View>
       <TouchableOpacity>
